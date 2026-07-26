@@ -49,7 +49,7 @@ def style_base_layout():
                 }
 
                 /* Secondary Button */
-                button[kind="secondary"] {
+                button[kind="secondary"], btnsec {
                     font-family: "Manrope", sans-serif !important;
                     font-weight: 600 !important;
                     border-radius: 14px !important;
@@ -86,6 +86,14 @@ def style_base_layout():
                     background: #174173 !important;
                     transform: translateY(-2px) scale(1.05);
                     box-shadow: 0 5px 10px rgba(30, 77, 138, 0.30);
+                }
+
+                div.st-key-go_home_button button {
+                    min-width: 15rem !important;
+                    white-space: nowrap !important;
+                    justify-content: center !important;
+                    padding: 0.9rem 1.4rem !important;
+                    border-radius: 18px !important;
                 }
 
                 /* Tertiary Button Hover */
@@ -135,6 +143,21 @@ def style_background_home():
                 }
 
            </style> 
+        """,
+        unsafe_allow_html=True,
+    )
+
+
+def style_compact_top_spacing():
+
+    st.markdown(
+        """
+           <style>
+                [data-testid="stAppViewContainer"] .block-container {
+                    padding-top: 10px !important;
+                    margin-top: -30px !important;
+                }
+           </style>
         """,
         unsafe_allow_html=True,
     )

@@ -27,3 +27,5 @@ Thumbs.db
 
 .streamlit/
 .dist/
+.agents/
+.claude/
