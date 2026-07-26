@@ -8,7 +8,7 @@ def header_home():
         f"""
     <div style="display:flex; flex-direction:column; align-items:center; justify-content:center; margin-bottom:30px; margin-top:10px" >
         <img src="{logo_url}" style="height:100px;"  />
-        <h1 style="text-align:center; color:#081c36" > IntelliPresenceSynci </h1>
+        <h1 style="text-align:center; color:#081c36" >IntelliPresenceSync</h1>
     </div>
 
 

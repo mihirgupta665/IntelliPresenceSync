@@ -2,6 +2,7 @@
 venv/
 
 # Python cache
+*.pyc
 __pycache__/
 *.py[cod]
 
@@ -24,3 +25,5 @@ Thumbs.db
 # Model checkpoints (optional)
 *.ckpt
 
+.streamlit/
+.dist/

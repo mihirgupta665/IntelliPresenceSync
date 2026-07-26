@@ -25,13 +25,13 @@ def style_base_layout():
 
                 h2{
                     font-family: "Manrope", sans-serif !important ; 
-                    font-size: 3.5rem !important;
+                    font-size: 2rem !important;
                     line-height: 1.1 !important;
                     margin-bottom: 0rem !important;
                     color: #081c36 !important;
                 }
 
-                h3, h4, p, span{
+                h3, h4, p{
                     font-family: "Manrope", sans-serif !important ; 
                 }
 
@@ -126,6 +126,12 @@ def style_background_home():
 
                 .stApp {
                     background: #FEF5E7 !important
+                }
+
+                .stApp div[data-testid="stColumn"]{
+                    background-color: #FFF !important;
+                    padding: 2.5rem !important;
+                    border-radius: 5rem !important;
                 }
 
            </style> 
