@@ -20,7 +20,7 @@ def style_base_layout():
                     font-size: 3.5rem !important;
                     line-height: 1.1 !important;
                     margin-bottom: 0rem !important;
-                    color: #1E293B !important;
+                    color: #756106 !important;
                 }
 
                 h2{
@@ -28,7 +28,7 @@ def style_base_layout():
                     font-size: 3.5rem !important;
                     line-height: 1.1 !important;
                     margin-bottom: 0rem !important;
-                    color: #1E293B !important;
+                    color: #081c36 !important;
                 }
 
                 h3, h4, p, span{
