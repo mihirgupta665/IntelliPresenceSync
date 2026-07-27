@@ -8,6 +8,8 @@ from src.ui.base_layout import (
 )
 from src.components.header import header_dashboard
 
+from src.database.db import check_teacher_exist, create_teacher
+
 def teacher_screen():
 
     style_background_dashboard()
@@ -48,6 +50,25 @@ def teacher_screen_login():
     footer_dashboard()
 
 
+def register_teacher(teacher_username, teacher_pass, teacher_name, teacher_pass_confirm):
+    if not teacher_username or not teacher_name or not teacher_pass or not teacher_pass_confirm:
+        return False, "All Fields are required!"
+
+    if teacher_pass_confirm!=teacher_pass:
+        return False, "Confirm Password does not match!"
+
+    if check_teacher_exist(teacher_username):
+        return False, "Username has already been taken"
+
+    try:
+        create_teacher(teacher_username, teacher_pass, teacher_name)
+        return True, "Teacher registration successfull"
+
+    except Exception as e:
+        return False, "Error occured while registering teacher"
+
+
+
 def teacher_screen_register():
     header_dashboard()
 
@@ -64,7 +85,17 @@ def teacher_screen_register():
     btnc1, btnc2 = st.columns(2)
 
     with btnc1:
-        st.button("Register Now", type=    "tertiary", icon=":material/passkey:", shortcut="control+enter", width="stretch")
+        if st.button("Register Now", type=    "tertiary", icon=":material/passkey:", shortcut="control+enter", width="stretch"):
+            success, message = register_teacher(teacher_username, teacher_pass, teacher_name, teacher_pass_confirm)
+            if success:
+                st.success(message)
+                import time
+                time.sleep(2)
+                st.session_state.teacher_login_type = "login"
+                st.rerun()
+            else:
+                st.error(message)
+
 
     with btnc2:
         if st.button("Login Instead", type="secondary", icon=":material/passkey:", width="stretch"):
