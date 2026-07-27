@@ -41,5 +41,24 @@ def teacher_screen_login():
     footer_dashboard()
 
 
+def teacher_screen_register():
+    header_dashboard()
+    
 
+    st.header("Login using password", text_alignment="center")
+    st.space(size="small")
+
+    teacher_username = st.text_input("Enter Username", placeholder="Ex. Mihir Gupta" )
+    teacher_pass = st.text_input("Enter Password", type="password", placeholder="********")
+    st.divider()
+
+    btnc1, btnc2 = st.columns(2)
+
+    with btnc1:
+        st.button("Login", type="tertiary", icon=":material/passkey:", shortcut="control+enter", width="stretch")
+    with btnc2:
+        st.button("Register Instead", type="secondary", icon=":material/passkey:", width="stretch")
+
+
+    footer_dashboard()
        
