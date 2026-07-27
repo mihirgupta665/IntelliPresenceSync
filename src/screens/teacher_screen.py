@@ -16,7 +16,11 @@ def teacher_screen():
 
     # header_dashboard()
     # st.header("Register your teacher profile")
-    teacher_screen_login()
+
+    if "teacher_login_type" not in st.session_state or st.session_state.teacher_login_type == "login":
+        teacher_screen_login()
+    elif st.session_state.teacher_login_type == "register":
+        teacher_screen_register()
 
 
 def teacher_screen_login():
@@ -26,7 +30,7 @@ def teacher_screen_login():
     st.header("Login using password", text_alignment="center")
     st.space(size="small")
 
-    teacher_username = st.text_input("Enter Username", placeholder="Ex. Mihir Gupta" )
+    teacher_username = st.text_input("Enter Username", placeholder="Ex. MihirGupta665 " )
     teacher_pass = st.text_input("Enter Password", type="password", placeholder="********")
     st.divider()
 
@@ -34,8 +38,11 @@ def teacher_screen_login():
 
     with btnc1:
         st.button("Login", type="tertiary", icon=":material/passkey:", shortcut="control+enter", width="stretch")
+
     with btnc2:
-        st.button("Register Instead", type="secondary", icon=":material/passkey:", width="stretch")
+        if st.button("Register Instead", type="secondary", icon=":material/passkey:", width="stretch"):
+            st.session_state.teacher_login_type = "register" 
+    
 
 
     footer_dashboard()
@@ -43,22 +50,25 @@ def teacher_screen_login():
 
 def teacher_screen_register():
     header_dashboard()
-    
 
-    st.header("Login using password", text_alignment="center")
+    st.header("Register your teacher profile", text_alignment="center")
     st.space(size="small")
 
     teacher_username = st.text_input("Enter Username", placeholder="Ex. Mihir Gupta" )
+    teacher_name = st.text_input("Enter Your Name", placeholder="Ex. Mihir Gupta" )
+
     teacher_pass = st.text_input("Enter Password", type="password", placeholder="********")
-    st.divider()
+    teacher_pass_confirm = st.text_input("Confirm Password", type="password", placeholder="********")
+    st.space("xxsmall")
 
     btnc1, btnc2 = st.columns(2)
 
     with btnc1:
-        st.button("Login", type="tertiary", icon=":material/passkey:", shortcut="control+enter", width="stretch")
-    with btnc2:
-        st.button("Register Instead", type="secondary", icon=":material/passkey:", width="stretch")
+        st.button("Register Now", type=    "tertiary", icon=":material/passkey:", shortcut="control+enter", width="stretch")
 
+    with btnc2:
+        if st.button("Login Instead", type="secondary", icon=":material/passkey:", width="stretch"):
+            st.session_state.teacher_login_type = "login"
+            
 
     footer_dashboard()
-       
