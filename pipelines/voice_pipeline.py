@@ -21,4 +21,24 @@ def get_voice_embedding(audio_bytes):
 
     except Exception as e:
         st.error("Error occured while Recognizing Voice.")
-        return None 
+        return None
+
+
+def identify_speaker(new_embedding, candidates_dictionary, threshold=0.65):
+    if new_embedding is None or not candidates_dictionary:
+        return None, 0.0
+
+    best_sid = None
+    best_score = -1.0
+
+    for sid, stored_embedding in candidates_dictionary.items():
+        if stored_embedding:
+            similarity = np.dot(new_embedding, stored_embedding)
+            if similarity > best_score:
+                best_score = similarity
+                best_sid = sid
+
+    if best_score >= threshold:
+        return best_sid, best_score
+    
+
