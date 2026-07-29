@@ -58,6 +58,17 @@ def create_student(new_name, face_embedding=None, voice_embedding=None):
         "face_embedding" : face_embedding,
         "voice_embedding" : voice_embedding
     }
-    response = execute_with_retries(supabase.table("students").insert(data))
 
+    response = execute_with_retries(supabase.table("students").insert(data))
+    return response.data
+
+def create_subject(subject_code, name, section, teacher_id):
+    data = {
+        "subject_code" : subject_code,
+        "name" : name,
+        "section" : section,
+        "teacher_id" : teacher_id
+    }
+
+    response = execute_with_retries(supabase.table("subjects").insert(data))
     return response.data

@@ -9,6 +9,7 @@ from src.ui.base_layout import (
 from src.components.header import header_dashboard
 
 from src.database.db import check_teacher_exist, create_teacher, teacher_login
+from src.components.dialog_create_subject import create_subject_dialog
 
 def teacher_screen():
 
@@ -110,6 +111,10 @@ def teacher_tab_manage_subjects():
     with col2:
         if st.button("Create new Subject", width="stretch"):
             create_subject_dialog(teacher_id)
+
+    # List All Subjects
+    subjects = get_teacher_subject(teacher_id)
+    
 
 
 def teacher_tab_attendance_records():
