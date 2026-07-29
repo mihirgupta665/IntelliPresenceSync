@@ -52,11 +52,11 @@ def get_trained_model():
         if embedding:
             X.append(np.array(embedding))
             y.append(student.get('student_id'))
-
+    
     if len(X) == 0:
         return None
 
-    clf = SVC(kernel="linear", probability=True, class_weight="balanced" )
+    clf = SVC(kernel="linear", probability=True, class_weight="balanced")
 
     try:
         clf.fit(X, y)
@@ -109,9 +109,5 @@ def predict_attendance(class_image_np):
         if best_match_score <= resemblance_threshold:
             detected_student[predicted_id] = True
 
-
+    # returning matched studends i> predicted_ids of students matched , ii> list of total students of database (student_ids of database), iii> total no. of students in the image (total encodings)
     return detected_student, all_students, len(encodings)
-
-
-
-    
