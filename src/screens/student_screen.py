@@ -10,6 +10,7 @@ from src.components.header import header_dashboard
 
 import numpy as np
 from PIL import Image
+from src.
 
 
 
@@ -47,7 +48,10 @@ def student_screen():
 
     photo_source = st.camera_input("Position your face in the center")
     if photo_source:
-        np.array(Image.open(photo_source))
+        img = np.array(Image.open(photo_source))
+
+        with st.spinner("AI is scanning..."):
+            detected, all_ids, num_faces = predict_attendance(img)
 
     footer_dashboard()
 
