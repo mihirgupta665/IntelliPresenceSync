@@ -27,6 +27,61 @@ def teacher_screen():
         teacher_screen_register()
 
 
+def teacher_dashboard():
+    teacher_data = st.session_state.teacher_data
+
+    logo_url= "https://i.ibb.co/YTYGn5qV/logo.png"  
+
+    logo_col, spacer_col, action_col = st.columns([1.2, 2.2, 2.2], vertical_alignment="center")
+
+    with logo_col:
+        st.markdown(
+            f"""
+            <div style="display:flex; justify-content:flex-start;">
+                <img src="{logo_url}" style="height:100px;" />
+            </div>
+            """,
+            unsafe_allow_html=True,
+        )
+
+    with action_col:
+        if st.button( "Logout",  type="primary",  key="loginbackbtn", shortcut="Ctrl+Backspace", width="stretch"):
+            st.session_state["is_logged_in"] = False
+            del st.session_state.teacher_data
+            st.rerun()
+
+    st.markdown(
+        """
+        <h1 style="text-align:center; color:#081c36; margin-bottom:30px;">IntelliPresenceSync</h1>
+        """,
+        unsafe_allow_html=True,
+    )
+
+    st.header(f"""Welcome, {teacher_data["name"]} """)
+
+    # st.space()
+
+    if "current_teacher_tab" not in st.session_state:
+        st.session_state.current_teacher_tab = "take_attendance"
+
+    tab1, tab2, tab3 = st.columns(3)
+
+    with tab1:
+        if st.button("Take Attendance",width="stretch", icon=":material/ar_on_you:"):
+            st.session_state.current_teacher_tab = "take_attendance"
+            st.rerun()        
+
+    with tab2:
+        if st.button("Manage Subjects",width="stretch", icon=":material/book_ribbon:"):
+            st.session_state.current_teacher_tab = "manage_subjects"
+            st.rerun()        
+
+    with tab3:
+        if st.button("Attendance Histories", width="stretch", icon=":material/library_books:"):
+            st.session_state.current_teacher_tab = "attendance_record"
+            st.rerun()        
+
+    footer_dashboard()
 
 def login_teacher(username, password):
     if not username or not password:
