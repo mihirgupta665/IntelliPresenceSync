@@ -52,7 +52,7 @@ def get_trained_model():
         if embedding:
             X.append(np.array(embedding))
             y.append(student.get('student_id'))
-    
+
     if len(X) == 0:
         return None
 
@@ -92,7 +92,7 @@ def predict_attendance(class_image_np):
 
     # real time encodings
     for encoding in encodings:
-        if len(all_students) >= 2:
+        if len(all_students) >= 2:   # sould it be 1 instead of 2 ?
             predicted_id = int(clf.predict([encoding])[0])
         else:
             # if one student is there then it will give predicted id of that student only. is this correct as there could a case that daatabse stdent is different and the image contain one student photo which is also totaly different unique person
@@ -101,7 +101,7 @@ def predict_attendance(class_image_np):
         #  obtaining exact correct embedding for further validation
         student_embedding = X_train[y_train.index(predicted_id)]
 
-        # numpy linalg has the capabilities to perform operations even on embeddings i.e. vectors or lists or array
+        # numpy linalg has the capabilities to perform operations even on embeddings i.e. vectors also on lists or array converted to np.array()
         best_match_score = np.linalg.norm(student_embedding - encoding)
 
         resemblance_threshold = 0.6

@@ -27,10 +27,6 @@ def teacher_screen():
         teacher_screen_register()
 
 
-def teacher_dashboard():
-    teacher_data = st.session_state.teacher_data
-
-    st.header(f"""Welcome, {teacher_data["name"]} """)
 
 def login_teacher(username, password):
     if not username or not password:

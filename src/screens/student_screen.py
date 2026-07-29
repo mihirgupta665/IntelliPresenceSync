@@ -29,6 +29,9 @@ def student_screen():
         student_dashboard()
         return
 
+    if "show_student_registration" not in st.session_state:
+        st.session_state.show_student_registration = False
+
     header_dashboard()
 
     st.markdown(
@@ -53,11 +56,13 @@ def student_screen():
         unsafe_allow_html=True,
     )
 
-    show_registration = False
     st.header("Login using FaceID", text_alignment="center")
 
     photo_source = st.camera_input("Position your face in the center")
-    if photo_source:
+    if not photo_source:
+        st.session_state.show_student_registration = False
+
+    if photo_source and not st.session_state.show_student_registration:
         img = np.array(Image.open(photo_source))
 
         with st.spinner("AI is scanning..."):
@@ -77,7 +82,7 @@ def student_screen():
                     if student:
                         st.session_state.is_logged_in = True 
                         st.session_state.user_role = "student"
-                        st.session_state.student_role = student
+                        st.session_state.student_data = student
                         st.toast(f"{student["name"]} - Welcome Back!")
                         time.sleep(1)
                         st.rerun()
@@ -85,9 +90,9 @@ def student_screen():
 
                 else:    
                     st.info("Face Not Recognized! You might be a new student")
-                    show_registration = True
+                    st.session_state.show_student_registration = True
 
-    if show_registration:
+    if st.session_state.show_student_registration and photo_source:
         with st.container(border=True):
             st.header("Register new Profile")
             new_name = st.text_input("Enter your name", placeholder=" Ex. Mihir Gupta")
@@ -98,40 +103,46 @@ def student_screen():
             audio_data = None
 
             try:
-                audio_data = st.audio_input(f"Record a short phrase for voice capturing. Phrase example: 'I am present teacher, My name is {new_name}'")
-
+                audio_data = st.audio_input(
+                    f"Record a short phrase for voice capturing. Phrase example: 'I am present teacher, My name is {new_name}'"
+                )
             except Exception:
                 st.error("Error occured during capturing of voice for recording")
 
-                if st.button("Create Account"):
-                    if new_name:
-                        with st.spinner("Creating Profile..."):
-                            img = np.array(Image.open(photo_source))
-                            encodings = get_face_embeddings(img)
-                            if encodings:
-                                face_emb = encodings[0].tolist()
+            if st.button("Create Account", type="primary"):
+                if new_name:
+                    with st.spinner("Creating Profile..."):
+                        img = np.array(Image.open(photo_source))
+                        encodings = get_face_embeddings(img)
+                        if encodings:
+                            face_emb = encodings[0].tolist()
 
-                                voice_emb =  None
-                                if audio_data:
-                                    voice_emb = get_voice_embedding(audio_data.read())
+                            voice_emb = None
+                            if audio_data:
+                                audio_bytes = audio_data.getvalue()
+                                if audio_bytes:
+                                    voice_emb = get_voice_embedding(audio_bytes)
 
-                                response_data = create_student(new_name, face_embeddings=face_emb, voice_embedding=voice_emb)    
+                            response_data = create_student(
+                                new_name,
+                                face_embedding=face_emb,
+                                voice_embedding=voice_emb,
+                            )
 
-                                if response_data:
-                                    train_classifier()
+                            if response_data:
+                                train_classifier()
 
-                                    st.session_state.is_logged_in = True 
-                                    st.session_state.user_role = "student"
-                                    st.session_state.student_role = response_data[0]
-                                    st.toast(f"Welcome {new_name} \n Profile Successfully Created")
-                                    time.sleep(1)
-                                    st.rerun()
-
-                            else:
-                                st.error("Error occured while capturing facial features for Registration!")
-
-                    else:
-                        st.warning("Please enter your name!")
+                                st.session_state.is_logged_in = True
+                                st.session_state.user_role = "student"
+                                st.session_state.student_data = response_data[0]
+                                st.session_state.show_student_registration = False
+                                st.toast(f"Welcome {new_name} \n Profile Successfully Created")
+                                time.sleep(1)
+                                st.rerun()
+                        else:
+                            st.error("Error occured while capturing facial features for Registration!")
+                else:
+                    st.warning("Please enter your name!")
 
 
 
