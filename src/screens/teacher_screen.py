@@ -6,10 +6,11 @@ from src.ui.base_layout import (
     style_base_layout,
     style_compact_top_spacing,
 )
-from src.components.header import header_dashboard
-
 from src.database.db import check_teacher_exist, create_teacher, teacher_login, get_teacher_subjects
+from src.components.header import header_dashboard
 from src.components.dialog_create_subject import create_subject_dialog
+from src.components.subject_card import subject_card
+
 
 def teacher_screen():
 
