@@ -1,8 +1,44 @@
 import streamlit as st
-from src.database.db import create_subject
+import segno
+import io
 
-@st.dialog("Create New Subject")
-def create_subject_dialog(teacher_id):
+@st.dialog("Share Class Link")
+def share_subject_dialog(subject_name, subject_code):
+    app_domain = "http://localhost:8501"
+    join_url = f"{app_domain}/?join-code={subject_code}"
+
+    st.header("Scan to Join")
+
+    qr = segno.make(join_url)
+    out = io.BytesIO()
+    qr.save(out, kind="png", scale=10, border=1)
+
+    col1, col2 = st.columns(2)
+
+    with col1:
+        st.markdown("### Copy Link")
+        st.code(join_url, language="text")
+        st.code(subject_code, language="text")
+        st.info("Copy this link to share on Whatsapp or Email")
+
+    with col2:
+        st.markdown("### Scan to Join")
+        st.image(out.getvalue(), use_column_width=True, caption="QRCode for class joining")
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
     st.write("Enter the details of new subject")
     sub_id = st.text_input("Subject Code", placeholder="Ex. CSE101")
     sub_name = st.text_input("Subject Name", placeholder="Ex. Introduction to Computer Science")
