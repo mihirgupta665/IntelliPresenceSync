@@ -15,7 +15,7 @@ def enroll_dialog():
             if res.data:
                 subject  = res.data[0]  
                 student_id = st.session_state.student_data["student_id"]
-                student_name = st.session_state.student_data["student_name"]
+                student_name = st.session_state.student_data["name"]
 
                 check = execute_with_retries(supabase.table("subject_students").select("*").eq("subject_id", subject["subject_id"]).eq("student_id", student_id))
                 if check.data:

@@ -105,3 +105,13 @@ def unenroll_student_to_subject(student_id, subject_id):
     return response.data
 
 
+
+def get_student_subjects(student_id):
+    response = execute_with_retries(supabase.table("subject_students").select("*, subjects(*)").eq("student_id", student_id))
+    return response.data
+
+
+def get_student_attendance(student_id):
+    response = execute_with_retries(supabase.table("attendance_logs").select("*, subjects(*)").eq("student_id", student_id))
+    return response.data
+
