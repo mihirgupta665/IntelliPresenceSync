@@ -37,5 +37,21 @@ def add_photos_dialog():
             st.rerun()
 
     if st.session_state.photo_tab == "upload":
-        uploaded_files = st.file_uploader
- 
+        uploaded_files = st.file_uploader("choose image files", type=["jpg", "png", "jpeg"], accept_multiple_files=True, key="dialog_upload")
+
+        if uploaded_files:
+            for f in uploaded_files:
+                st.session_state.attendance_images.append(Image.open(f))
+
+                st.toast("Photo Uploaded successfully")
+                time.sleep(1)
+                st.rerun()
+
+    st.divider()
+
+    if st.button("Done", type="secondary", width="stretch"):
+        st.rerun()
+
+
+            
+        

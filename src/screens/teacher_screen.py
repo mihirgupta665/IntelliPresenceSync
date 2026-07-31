@@ -8,9 +8,10 @@ from src.ui.base_layout import (
 )
 from src.database.db import check_teacher_exist, create_teacher, teacher_login, get_teacher_subjects
 from src.components.header import header_dashboard
-from src.components.dialog_create_subject import create_subject_dialog
 from src.components.subject_card import subject_card
+from src.components.dialog_create_subject import create_subject_dialog
 from src.components.dialog_share_subject import share_subject_dialog
+from src.components.dialog_add_photo import add_photos_dialog
 
 
 def teacher_screen():
@@ -129,7 +130,7 @@ def teacher_tab_take_attendance():
 
     st.divider()
 
-    
+
 
 
 
