@@ -18,3 +18,34 @@ def auto_enroll_dialog(subject_code):
         return
 
     subject = res.data[0]
+
+    check = execute_with_retries(supabase.table("subject_students").select("*").eq("subject_id", subject["subject_id"]).eq("student_id", student_id))
+    if check.data:
+        st.info("You are already Enrolled!")
+        if st.button("Got it!", type="primary"):
+            st.query_params.clear()
+            st.rerun()
+        return
+
+    
+    st.markdown(f"Would you like to enroll in **{subject["name"]}** ?")
+
+    col1, col2 = st.columns(2)
+
+    with col1:
+        if st.button("No Thanks!"):
+            st.query_params.clear()
+            st.rerun()
+    
+    with col2:
+        if st.button("Yes enroll now!", type="primary", width="stretch"):
+            enroll_student_to_subject(student_id, subject["subject_id"])
+            st.success(f"You have been successfully enrolled in {subject["name"]}")
+            st.query_params.clear() 
+            time.sleep(1)
+            st.rerun()
+
+
+
+
+
