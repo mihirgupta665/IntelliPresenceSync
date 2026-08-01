@@ -9,8 +9,9 @@ from src.pipelines.voice_pipeline import process_bulk_audio
 from src.database.config import supabase
 from src.database.db import execute_with_retries
 
-st.dialog("Voice Attendance")
+from src.components.dialog_attendance_result import show_attendance_result
 
+@st.dialog("Voice Attendance")
 def voice_attendance_dialog(selected_subject_id):
     st.write("Record the 'I am Present' voices of all students. This entire audio will be analyzed by AI to recogonize the student for attendance purpose.")
 
@@ -73,3 +74,4 @@ def voice_attendance_dialog(selected_subject_id):
 
     if st.session_state.get("voice_attendance_results"):
         df_results, logs = st.session_state.voice_attendance_results
+        show_attendance_result(df_results, logs)
