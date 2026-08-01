@@ -1,5 +1,6 @@
 import streamlit as st
 import numpy as np
+import pandas as pd
 
 import time
 from datetime import datetime
@@ -21,6 +22,7 @@ from src.components.subject_card import subject_card
 from src.components.dialog_create_subject import create_subject_dialog
 from src.components.dialog_share_subject import share_subject_dialog
 from src.components.dialog_add_photo import add_photos_dialog
+from src.components.dialog_attendance_result import attendance_result_dialog
 
 
 def teacher_screen():
@@ -203,10 +205,17 @@ def teacher_tab_take_attendance():
                                     "subject_id" : selected_subject_id,
                                     "timestamp" : current_timestamp,
                                     "is_present" : bool(is_present),
-                                    
-
                                 }
                             )
+
+                    attendance_result_dialog(pd.DataFrame(results), attendance_to_log)
+
+        with c3:
+            if st.button("Use Voice Attendance", type="secondary", widtg="stretch", icon=":material/mic:"):
+                voice_attendance_dialog()
+
+                
+
 
 
 def teacher_tab_manage_subjects():

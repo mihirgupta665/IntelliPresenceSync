@@ -115,3 +115,8 @@ def get_student_attendance(student_id):
     response = execute_with_retries(supabase.table("attendance_logs").select("*, subjects(*)").eq("student_id", student_id))
     return response.data
 
+
+def create_attendance(logs):
+    response = execute_with_retries(supabase.table("attendance_logs").insert(logs))
+    return response.data  
+
