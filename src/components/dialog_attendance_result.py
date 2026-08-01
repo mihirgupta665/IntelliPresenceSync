@@ -25,4 +25,4 @@ def attendance_result_dialog(df, logs):
                 time.sleep(2)
                 st.rerun()
             except Exception as e:
-                st.error("Error occured while marking the Attendance")
+                st.error(f"Error occured while marking the Attendance {e}")

@@ -17,7 +17,7 @@ def subject_card(name, code, section, stats=None, footer_callback=None):
         html += """</div>"""
     html += """</div>"""
 
-    print(html)
+    # print(html)
     st.markdown(html, unsafe_allow_html=True )
 
     if footer_callback:
