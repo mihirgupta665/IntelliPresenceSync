@@ -92,22 +92,21 @@ def predict_attendance(class_image_np):
 
     # real time encodings
     for encoding in encodings:
-        if len(all_students) >= 2:   # sould it be 1 instead of 2 ?
+        if len(all_students) >= 2:   
             predicted_id = int(clf.predict([encoding])[0])
-        else:
-            # if one student is there then it will give predicted id of that student only. is this correct as there could a case that daatabse stdent is different and the image contain one student photo which is also totaly different unique person
+        else: # len = 1 as len = 0 is handled in function get_trained_model
             predicted_id = int(all_students[0])  
 
-        #  obtaining exact correct embedding for further validation
+        # obtaining exact correct embedding for further validation
         student_embedding = X_train[y_train.index(predicted_id)]
 
         # numpy linalg has the capabilities to perform operations even on embeddings i.e. vectors also on lists or array converted to np.array()
-        best_match_score = np.linalg.norm(student_embedding - encoding)
+        best_match_score = np.linalg.norm(student_embedding - encoding) # thia also handle len 1 encoding of static predicted auto id 1
 
         resemblance_threshold = 0.6
 
         if best_match_score <= resemblance_threshold:
             detected_student[predicted_id] = True
 
-    # returning matched studends i> predicted_ids of students matched , ii> list of total students of database (student_ids of database), iii> total no. of students in the image (total encodings)
+    # returning matched studends i> dictionary predicted_ids of students matched , ii> list of total students of database (student_ids of database), iii> total no. of students in the image (length of all encodings array)
     return detected_student, all_students, len(encodings)
