@@ -213,7 +213,7 @@ def teacher_tab_take_attendance():
 
     with c3:
         if st.button("Use Voice Attendance", type="secondary", width="stretch", icon=":material/mic:"):
-            voice_attendance_dialog(selected    )
+            voice_attendance_dialog(selected_subject_id)    
 
                 
 
