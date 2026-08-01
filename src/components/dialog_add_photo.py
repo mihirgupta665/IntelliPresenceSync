@@ -50,40 +50,6 @@ def add_photos_dialog():
 
     st.divider()
 
-    if st.session_state.attendance_images:
-        st.header("Added Photos")
-        gallery_cols = st.columns(4)
-
-        for idx, img in enumerate(st.session_state.attendance_images):
-            with gallery_cols[idx % 4]:
-                st.image(img, width="stretch", caption=f"Photo {idx+1}")
-
-        c1, c2, c3 = st.columns(3)
-
-        with c1:
-            if st.button("Clear All Photos", width="stretch", type="tertiary", icon=":material/delete:"):
-                st.session_state.attendance_images = []
-                st.success("All Images Cleared")
-                time.sleep(1)
-                st.rerun()
-
-        with c2:
-            has_photos = bool(st.session_state.attendance_images)
-            if st.button("Run Face Analysis", width="stretch", type="primary", icon=":material/analytics:"):
-                with st.spinner("Deep Scanning Classroom Photos..."):
-                    all_detected_id = {}
-
-                    for idx, img in enumerate(st.session_state.attendance_images):
-                        img_np = np.array(img.convert("RGB"))
-                        detected, _, _ = predict_attendance(img_np)
-
-                        if detected:
-                            for sid in detected.key
-
-
-
-
-
 
 
 

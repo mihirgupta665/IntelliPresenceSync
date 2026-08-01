@@ -108,5 +108,5 @@ def predict_attendance(class_image_np):
         if best_match_score <= resemblance_threshold:
             detected_student[predicted_id] = True
 
-    # returning matched studends i> dictionary predicted_ids of students matched , ii> list of total students of database (student_ids of database), iii> total no. of students in the image (length of all encodings array)
+    # returning matched studends i> dictionary predicted_ids of students matched , ii> list of all students ids of all students in database (student_ids of database), iii> total no. of students in the image (length of all encodings array)
     return detected_student, all_students, len(encodings)
