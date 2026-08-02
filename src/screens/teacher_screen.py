@@ -272,13 +272,33 @@ def teacher_tab_attendance_records():
 
         data.append(
             {
-                "ts_group":
-                "Time"
-                "Subject"
-                "Subject Code"
-                "is_present"
+                "ts_group": ts.split(".")[0] if ts else None,
+                "Time": datetime.fromisoformat(ts).strftime("%Y-%m-%d %I:%M %p") if ts else "N/A",
+                "Subject": r["subjects"]["name"],
+                "Subject Code": r["subjects"]["subject_code"],
+                "is_present": bool(r.get("is_present", False))
             }
         )
+
+    df = pd.DataFrame(data)
+
+    summary = (
+        df.groupby(["ts_group", "Time", "Subject", "Subject Code"])
+        .agg(
+            Present_Count = ("is_present", "sum"),
+            Total_Count =  ("is_present", "count")
+        ).reset_index()   # brings back the dataframe to original format as that of before grouping
+    )
+
+    summary["Attendance Stats"] = (
+        "☑️ " + summary["Present_Count"].astype(str) + "/" + summary["Total_Count"].astype(str) + " Students"
+    )
+
+    display_df = ( summary.sort_values(by="ts_group", ascending=False)
+                    [["Time", "Subject", "Subject Code", "Attendance Stats"]]
+                   )
+
+    st.dataframe(display_df, width="stretch", hide_index=True)
 
 
 
