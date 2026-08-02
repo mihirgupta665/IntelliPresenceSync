@@ -4,7 +4,7 @@ import io
 
 @st.dialog("Share Class Link")
 def share_subject_dialog(subject_name, subject_code):
-    app_domain = "MihirLegacy-IntelliPresenceSync.streamlit.app"
+    app_domain = "intellipresencesync-mihirlegacy.streamlit.app"
     join_url = f"{app_domain}/?join-code={subject_code}"
 
     st.header("Scan to Join")
@@ -24,6 +24,3 @@ def share_subject_dialog(subject_name, subject_code):
     with col2:
         st.markdown("### Scan to Join")
         st.image(out.getvalue(), caption="QRCode for class joining")
-
-
-# optimization
