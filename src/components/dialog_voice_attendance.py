@@ -39,6 +39,11 @@ def voice_attendance_dialog(selected_subject_id):
                 time.sleep(1)
                 return
 
+            if not audio_data:
+                st.error("Please record classroom audio first.")
+                print(type(audio_data))
+                return
+
             audio_bytes = audio_data.read()
 
             detected_scores = process_bulk_audio(audio_bytes, candidates_dict) 

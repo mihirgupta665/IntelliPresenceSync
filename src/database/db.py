@@ -120,3 +120,7 @@ def create_attendance(logs):
     response = execute_with_retries(supabase.table("attendance_logs").insert(logs))
     return response.data  
 
+def get_attendance_for_teacher(teacher_id):
+    response = execute_with_retries(supabase.table("Attendance_logs").select("*, subjects!inner(*)").eq("subjects.teacher_id", teacher_id))
+    return response.data
+

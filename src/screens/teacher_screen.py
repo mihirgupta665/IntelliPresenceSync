@@ -12,7 +12,7 @@ from src.ui.base_layout import (
 )
 
 from src.database.config import supabase
-from src.database.db import check_teacher_exist, create_teacher, teacher_login, get_teacher_subjects, execute_with_retries
+from src.database.db import execute_with_retries, check_teacher_exist, create_teacher, teacher_login, get_teacher_subjects, get_attendance_for_teacher
 
 from src.pipelines.face_pipeline import predict_attendance
 
@@ -255,6 +255,32 @@ def teacher_tab_manage_subjects():
 
 def teacher_tab_attendance_records():
     st.header("Attendance Records")
+
+    teacher_id = st.session_state.teacher_data["teacher_id"]
+
+    records = get_attendance_for_teacher(teacher_id)
+
+    if not records:
+        st.warning("No Attendance Found")
+        time.sleep(1)
+        return
+
+    data = [] 
+
+    for r in records:
+        ts = r.get("timestamp")
+
+        data.append(
+            {
+                "ts_group":
+                "Time"
+                "Subject"
+                "Subject Code"
+                "is_present"
+            }
+        )
+
+
 
 
 def login_teacher(username, password):

@@ -50,7 +50,7 @@ def process_bulk_audio(audio_bytes, candidate_dict, threshold=0.65):
     try:
         encoder = load_voice_encoder()
 
-        audio, sr = librosa.load(io.bytesIO(audio_bytes), sr=16000)
+        audio, sr = librosa.load(io.BytesIO(audio_bytes), sr=16000)
         segments = librosa.effects.split(audio, top_db=30)
 
         identified_results = {}
@@ -73,7 +73,7 @@ def process_bulk_audio(audio_bytes, candidate_dict, threshold=0.65):
         return identified_results
 
     except Exception as e:
-        st.error("Error occured while Recognizing Bulk Voices")
+        st.error(f"Error occured while Recognizing Bulk Voices {e}")
         return {}            
 
 
