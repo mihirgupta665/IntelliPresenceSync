@@ -353,22 +353,22 @@ def style_base_layout():
                       border-color: #E6DCC8 !important;
                   }
 
-                  /* Force all descendants of the input container to have transparent background (e.g. eye icon wrapper) */
-                  div[data-baseweb="input"] *,
-                  div[data-baseweb="textarea"] * {
-                      background: transparent !important;
-                      background-color: transparent !important;
+                  /* Force all descendants of the input container to have white background to blend in (except SVGs and paths) */
+                  div[data-baseweb="input"] *:not(svg):not(path),
+                  div[data-baseweb="textarea"] *:not(svg):not(path) {
+                      background: #FFFFFF !important;
+                      background-color: #FFFFFF !important;
                   }
 
-                  /* Force buttons and divs inside the input box to be transparent in all states (hover/active/focus) */
+                  /* Force buttons inside the input box to be white in all states (hover/active/focus) */
                   div[data-baseweb="input"] button,
                   div[data-baseweb="input"] button:hover,
                   div[data-baseweb="input"] button:active,
                   div[data-baseweb="input"] button:focus,
                   div[data-testid="stTextInput"] div[data-baseweb="input"] div,
                   div[data-testid="stTextInput"] div[data-baseweb="input"] button {
-                      background: transparent !important;
-                      background-color: transparent !important;
+                      background: #FFFFFF !important;
+                      background-color: #FFFFFF !important;
                       box-shadow: none !important;
                       border: none !important;
                   }
