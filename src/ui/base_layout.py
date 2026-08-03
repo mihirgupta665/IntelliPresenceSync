@@ -528,10 +528,40 @@ def style_base_layout():
                  }
 
                  /* Dialog Close Button (Always Dark Icon) */
-                 div[role="dialog"] button svg {
-                     fill: #081c36 !important;
-                     color: #081c36 !important;
-                 }
+                  /* -------------------------------------------------------------
+                     Responsive Layout & Typography Overrides
+                     ------------------------------------------------------------- */
+                  
+                  /* Footer Text Responsiveness */
+                  .app-footer-text {
+                      font-weight: bold !important;
+                      font-size: 1.25rem !important;
+                      text-align: center !important;
+                      color: #081c36 !important;
+                      margin: 0 !important;
+                  }
+
+                  @media (max-width: 768px) {
+                      h1 {
+                          font-size: 2.2rem !important;
+                      }
+                      h2 {
+                          font-size: 1.5rem !important;
+                      }
+                      h3 {
+                          font-size: 1.25rem !important;
+                      }
+                      p, li, label, .stMarkdown p, .stMarkdown span, .app-footer-text {
+                          font-size: 0.95rem !important;
+                      }
+                      
+                      /* Full width buttons on mobile */
+                      .stButton button,
+                      div.st-key-go_home_button button {
+                          min-width: 100% !important;
+                          width: 100% !important;
+                      }
+                  }
 
            </style> 
         """,
@@ -565,10 +595,18 @@ def style_background_home():
                     background: #FEF5E7 !important
                 }
 
-                .stApp div[data-testid="stColumn"]{
+                .stApp div[data-testid="stColumn"] {
                     background-color: #FFF !important;
                     padding: 2.5rem !important;
-                    border-radius: 5rem !important;
+                    border-radius: 3rem !important;
+                    margin-bottom: 1.5rem !important;
+                }
+
+                @media (max-width: 768px) {
+                    .stApp div[data-testid="stColumn"] {
+                        padding: 1.5rem !important;
+                        border-radius: 1.5rem !important;
+                    }
                 }
 
            </style> 
