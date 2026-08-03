@@ -326,21 +326,66 @@ def style_base_layout():
                     Global Overrides (Always White Background and Black Text for Inputs)
                     ------------------------------------------------------------- */
                  
-                 /* Input Fields (Text, Selectbox, File Uploaders) */
-                 div[data-testid="stTextInput"] input,
-                 div[data-testid="stNumberInput"] input,
-                 div[data-testid="stTextArea"] textarea {
-                     background-color: #FFFFFF !important;
-                     color: #000000 !important;
-                 }
+                  /* Input Fields (Text, Selectbox, File Uploaders) */
+                  div[data-testid="stTextInput"] input,
+                  div[data-testid="stNumberInput"] input,
+                  div[data-testid="stTextArea"] textarea {
+                      background-color: #FFFFFF !important;
+                      color: #000000 !important;
+                  }
 
-                 /* Input Parent Containers */
-                 div[data-testid="stTextInput"] div[data-baseweb="input"],
-                 div[data-testid="stNumberInput"] div[data-baseweb="input"],
-                 div[data-testid="stTextArea"] div[data-baseweb="textarea"] {
-                     background-color: #FFFFFF !important;
-                     border-color: #E6DCC8 !important;
-                 }
+                  /* Input Parent Containers */
+                  div[data-testid="stTextInput"] div[data-baseweb="input"],
+                  div[data-testid="stNumberInput"] div[data-baseweb="input"],
+                  div[data-testid="stTextArea"] div[data-baseweb="textarea"] {
+                      background-color: #FFFFFF !important;
+                      border-color: #E6DCC8 !important;
+                  }
+
+                  /* Force all descendants of the input container to have transparent background (e.g. eye icon wrapper) */
+                  div[data-baseweb="input"] *,
+                  div[data-baseweb="textarea"] * {
+                      background-color: transparent !important;
+                  }
+
+                  /* Ensure the toggle button (eye icon) SVG is dark and visible */
+                  div[data-baseweb="input"] button svg,
+                  div[data-baseweb="input"] svg {
+                      fill: #081c36 !important;
+                      color: #081c36 !important;
+                  }
+
+                  /* Force input border and outline styling on focus and active states */
+                  div[data-baseweb="input"]:focus-within,
+                  div[data-baseweb="textarea"]:focus-within {
+                      border-color: #e8b582 !important;
+                      box-shadow: 0 0 0 1px #e8b582 !important;
+                      outline: none !important;
+                  }
+
+                  /* Placeholder Text Styling (Force dark gray placeholder in all inputs) */
+                  div[data-testid="stTextInput"] input::placeholder,
+                  div[data-testid="stNumberInput"] input::placeholder,
+                  div[data-testid="stTextArea"] textarea::placeholder,
+                  input::placeholder,
+                  textarea::placeholder {
+                      color: #666666 !important;
+                      opacity: 1 !important; /* Firefox */
+                  }
+
+                  /* Webkit/Blink placeholder override */
+                  div[data-testid="stTextInput"] input::-webkit-input-placeholder,
+                  input::-webkit-input-placeholder {
+                      color: #666666 !important;
+                      opacity: 1 !important;
+                  }
+
+                  /* Firefox placeholder override */
+                  div[data-testid="stTextInput"] input::-moz-placeholder,
+                  input::-moz-placeholder {
+                      color: #666666 !important;
+                      opacity: 1 !important;
+                  }
 
                  /* Select Box Trigger */
                  div[data-testid="stSelectbox"] div[data-baseweb="select"] {
