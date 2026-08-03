@@ -419,8 +419,17 @@ def style_base_layout():
                  }
 
                  /* Ensure button text inherits button color instead of getting overridden by global text rules */
-                 button p,
-                 button span,
+                 .stButton button,
+                 .stButton button *,
+                 .stButton button p,
+                 .stButton button span,
+                 .stButton button div,
+                 .stButton button [data-testid="stMarkdownContainer"] p,
+                 .stButton button [data-testid="stMarkdownContainer"] span,
+                 div[data-testid="stAudioInput"] button,
+                 div[data-testid="stAudioInput"] button *,
+                 [role="button"],
+                 [role="button"] *,
                  [role="button"] p,
                  [role="button"] span {
                      color: inherit !important;
