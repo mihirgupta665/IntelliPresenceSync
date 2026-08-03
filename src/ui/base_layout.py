@@ -418,6 +418,14 @@ def style_base_layout():
                      color: #081c36 !important;
                  }
 
+                 /* Ensure button text inherits button color instead of getting overridden by global text rules */
+                 button p,
+                 button span,
+                 [role="button"] p,
+                 [role="button"] span {
+                     color: inherit !important;
+                 }
+
            </style> 
         """,
         unsafe_allow_html=True,
