@@ -398,6 +398,71 @@ def style_base_layout():
                      color: inherit !important;
                  }
 
+                 /* -------------------------------------------------------------
+                    Streamlit Component Color Stabilization (Prevent Dark Mode Distortions)
+                    ------------------------------------------------------------- */
+                 
+                 /* Sidebar Styling (Keep Cream Background and Dark Text) */
+                 section[data-testid="stSidebar"],
+                 section[data-testid="stSidebar"] div,
+                 section[data-testid="stSidebar"] p,
+                 section[data-testid="stSidebar"] span,
+                 section[data-testid="stSidebar"] label {
+                     background-color: #FEF5E7 !important;
+                     color: #081c36 !important;
+                 }
+                 section[data-testid="stSidebar"] [data-testid="stMarkdownContainer"] p {
+                     color: #081c36 !important;
+                 }
+
+                 /* Toast Messages Styling (Keep Cream Background and Dark Text) */
+                 div[data-testid="stToast"],
+                 .stToast {
+                     background-color: #FEF9F0 !important;
+                     border: 1px solid #E6DCC8 !important;
+                     color: #081c36 !important;
+                     box-shadow: 0 4px 12px rgba(232, 181, 130, 0.15) !important;
+                 }
+                 div[data-testid="stToast"] p,
+                 div[data-testid="stToast"] span,
+                 div[data-testid="stToast"] div {
+                     color: #081c36 !important;
+                 }
+
+                 /* Alert Banners (Success, Error, Info, Warning) */
+                 div[data-testid="stAlert"],
+                 div[data-testid="stAlert"] * {
+                     background-color: #FEF9F0 !important;
+                     border-color: #E6DCC8 !important;
+                     color: #081c36 !important;
+                 }
+
+                 /* Expanders (Keep White Background and Dark Text) */
+                 div[data-testid="stExpander"] {
+                     background-color: #FFFFFF !important;
+                     border: 1px solid #E6DCC8 !important;
+                 }
+                 div[data-testid="stExpander"] details summary,
+                 div[data-testid="stExpander"] details summary * {
+                     color: #081c36 !important;
+                 }
+
+                 /* Spinner Text (Always Dark Blue) */
+                 div[data-testid="stSpinner"] {
+                     color: #081c36 !important;
+                 }
+
+                 /* Horizontal Dividers */
+                 hr {
+                     border-color: #E6DCC8 !important;
+                 }
+
+                 /* Dialog Close Button (Always Dark Icon) */
+                 div[role="dialog"] button svg {
+                     fill: #081c36 !important;
+                     color: #081c36 !important;
+                 }
+
            </style> 
         """,
         unsafe_allow_html=True,
