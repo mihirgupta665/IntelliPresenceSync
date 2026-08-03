@@ -276,7 +276,7 @@ def teacher_tab_attendance_records():
             if dt.tzinfo:
                 dt = dt.astimezone(IST)
             else:
-                dt = dt.replace(tzinfo=IST)
+                dt = dt.replace(tzinfo=timezone.utc).astimezone(IST)
             formatted_time = dt.strftime("%Y-%m-%d %I:%M %p")
             ts_group = dt.strftime("%Y-%m-%dT%H:%M:%S")
         else:
