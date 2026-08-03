@@ -20,7 +20,6 @@ def style_base_layout():
                     font-size: 3.5rem !important;
                     line-height: 1.1 !important;
                     margin-bottom: 0rem !important;
-                    color: #756106 !important;
                 }
 
                 h2{
@@ -28,7 +27,6 @@ def style_base_layout():
                     font-size: 2rem !important;
                     line-height: 1.1 !important;
                     margin-bottom: 0rem !important;
-                    color: #081c36 !important;
                 }
 
                 h3, h4, p{
@@ -289,7 +287,16 @@ def style_base_layout():
                     Dark Mode Theme Adaptation & Widget Visual Stabilization
                     ------------------------------------------------------------- */
 
-                 /* Explicit Text Color Overrides for all standard text tags in the app container */
+                 /* -------------------------------------------------------------
+                    Light Mode Defaults (Text Colors, Dialog Background)
+                    ------------------------------------------------------------- */
+                 h1 {
+                     color: #756106 !important;
+                 }
+                 h2 {
+                     color: #081c36 !important;
+                 }
+                 h3, h4, h5, h6, p, span, li, label,
                  div[data-testid="stMarkdownContainer"] p,
                  div[data-testid="stMarkdownContainer"] li,
                  div[data-testid="stMarkdownContainer"] span,
@@ -306,6 +313,56 @@ def style_base_layout():
                      color: #081c36 !important;
                  }
 
+                 div[role="dialog"] {
+                     background-color: #FEF5E7 !important;
+                     color: #081c36 !important;
+                 }
+                 div[role="dialog"] div[data-testid="stMarkdownContainer"] p,
+                 div[role="dialog"] label[data-testid="stWidgetLabel"] p {
+                     color: #081c36 !important;
+                 }
+
+                 /* -------------------------------------------------------------
+                    Dark Mode Overrides (Text Colors, Dialog Background)
+                    ------------------------------------------------------------- */
+                 @media (prefers-color-scheme: dark) {
+                     h1 {
+                         color: #e8b582 !important;
+                     }
+                     h2 {
+                         color: #e6edf3 !important;
+                     }
+                     h3, h4, h5, h6, p, span, li, label,
+                     div[data-testid="stMarkdownContainer"] p,
+                     div[data-testid="stMarkdownContainer"] li,
+                     div[data-testid="stMarkdownContainer"] span,
+                     div[data-testid="stMarkdownContainer"] h3,
+                     div[data-testid="stMarkdownContainer"] h4,
+                     div[data-testid="stMarkdownContainer"] h5,
+                     div[data-testid="stMarkdownContainer"] h6,
+                     label[data-testid="stWidgetLabel"] p,
+                     label[data-testid="stWidgetLabel"] span,
+                     div[data-testid="stWidgetLabel"] p,
+                     .stMarkdown,
+                     .stText,
+                     .stCaption {
+                         color: #e6edf3 !important;
+                     }
+
+                     div[role="dialog"] {
+                         background-color: #161b22 !important;
+                         color: #e6edf3 !important;
+                     }
+                     div[role="dialog"] div[data-testid="stMarkdownContainer"] p,
+                     div[role="dialog"] label[data-testid="stWidgetLabel"] p {
+                         color: #e6edf3 !important;
+                     }
+                 }
+
+                 /* -------------------------------------------------------------
+                    Global Overrides (Always White Background and Black Text for Inputs)
+                    ------------------------------------------------------------- */
+                 
                  /* Input Fields (Text, Selectbox, File Uploaders) */
                  div[data-testid="stTextInput"] input,
                  div[data-testid="stNumberInput"] input,
@@ -348,7 +405,7 @@ def style_base_layout():
                      color: #081c36 !important;
                  }
 
-                 /* File Uploader Dropzone */
+                 /* File Uploader Dropzone & Filename */
                  div[data-testid="stFileUploader"] section[data-testid="stFileUploaderDropzone"] {
                      background-color: #FFFFFF !important;
                      border: 1px dashed #E6DCC8 !important;
@@ -357,14 +414,7 @@ def style_base_layout():
                  div[data-testid="stFileUploader"] section[data-testid="stFileUploaderDropzone"] div {
                      color: #081c36 !important;
                  }
-
-                 /* Dialog / Modal Overrides */
-                 div[role="dialog"] {
-                     background-color: #FEF5E7 !important;
-                     color: #081c36 !important;
-                 }
-                 div[role="dialog"] div[data-testid="stMarkdownContainer"] p,
-                 div[role="dialog"] label[data-testid="stWidgetLabel"] p {
+                 div[data-testid="stFileUploader"] div[data-testid="stFileUploaderFileName"] {
                      color: #081c36 !important;
                  }
 
@@ -380,8 +430,16 @@ def style_background_dashboard():
         """
            <style>
 
+                /* Light Mode Default background */
                 .stApp {
-                    background: #FEF5E7 !important
+                    background: #FEF5E7 !important;
+                }
+
+                /* Dark Mode background */
+                @media (prefers-color-scheme: dark) {
+                    .stApp {
+                        background: #0d1117 !important;
+                    }
                 }
 
            </style> 
@@ -396,14 +454,27 @@ def style_background_home():
         """
            <style>
 
+                /* Light Mode Default background */
                 .stApp {
-                    background: #FEF5E7 !important
+                    background: #FEF5E7 !important;
                 }
 
-                .stApp div[data-testid="stColumn"]{
+                .stApp div[data-testid="stColumn"] {
                     background-color: #FFF !important;
                     padding: 2.5rem !important;
                     border-radius: 5rem !important;
+                }
+
+                /* Dark Mode background */
+                @media (prefers-color-scheme: dark) {
+                    .stApp {
+                        background: #0d1117 !important;
+                    }
+                    .stApp div[data-testid="stColumn"] {
+                        background-color: #161b22 !important;
+                        padding: 2.5rem !important;
+                        border-radius: 5rem !important;
+                    }
                 }
 
            </style> 
