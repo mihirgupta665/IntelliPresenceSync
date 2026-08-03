@@ -334,6 +334,16 @@ def style_base_layout():
                       color: #000000 !important;
                   }
 
+                  /* Force light color-scheme on inputs to block browser Auto Dark Mode color inversion */
+                  div[data-testid="stTextInput"],
+                  div[data-testid="stTextInput"] *,
+                  div[data-testid="stNumberInput"],
+                  div[data-testid="stNumberInput"] *,
+                  div[data-testid="stTextArea"],
+                  div[data-testid="stTextArea"] * {
+                      color-scheme: light !important;
+                  }
+
                   /* Input Parent Containers */
                   div[data-testid="stTextInput"] div[data-baseweb="input"],
                   div[data-testid="stNumberInput"] div[data-baseweb="input"],
@@ -350,14 +360,17 @@ def style_base_layout():
                       background-color: transparent !important;
                   }
 
-                  /* Force buttons inside the input box to be transparent in all states (hover/active/focus) */
+                  /* Force buttons and divs inside the input box to be transparent in all states (hover/active/focus) */
                   div[data-baseweb="input"] button,
                   div[data-baseweb="input"] button:hover,
                   div[data-baseweb="input"] button:active,
-                  div[data-baseweb="input"] button:focus {
+                  div[data-baseweb="input"] button:focus,
+                  div[data-testid="stTextInput"] div[data-baseweb="input"] div,
+                  div[data-testid="stTextInput"] div[data-baseweb="input"] button {
                       background: transparent !important;
                       background-color: transparent !important;
                       box-shadow: none !important;
+                      border: none !important;
                   }
 
                   /* Ensure the toggle button (eye icon) SVG is dark and visible */
