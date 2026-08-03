@@ -2,7 +2,8 @@ import streamlit as st
 import pandas as pd
 
 import time
-from datetime import datetime
+from datetime import datetime, timezone, timedelta
+IST = timezone(timedelta(hours=5, minutes=30))
 
 from src.pipelines.voice_pipeline import process_bulk_audio
 
@@ -50,7 +51,7 @@ def voice_attendance_dialog(selected_subject_id):
 
             results, attendance_to_log = [], []
 
-            current_timestamp = datetime.now().strftime("%Y-%m-%dT%H:%M:%S")
+            current_timestamp = datetime.now(IST).isoformat()
             for node in enrolled_students:
                 student = node["students"]
                 score = detected_scores.get(student["student_id"], 0.0)

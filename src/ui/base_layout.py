@@ -323,43 +323,6 @@ def style_base_layout():
                  }
 
                  /* -------------------------------------------------------------
-                    Dark Mode Overrides (Text Colors, Dialog Background)
-                    ------------------------------------------------------------- */
-                 @media (prefers-color-scheme: dark) {
-                     h1 {
-                         color: #e8b582 !important;
-                     }
-                     h2 {
-                         color: #e6edf3 !important;
-                     }
-                     h3, h4, h5, h6, p, span, li, label,
-                     div[data-testid="stMarkdownContainer"] p,
-                     div[data-testid="stMarkdownContainer"] li,
-                     div[data-testid="stMarkdownContainer"] span,
-                     div[data-testid="stMarkdownContainer"] h3,
-                     div[data-testid="stMarkdownContainer"] h4,
-                     div[data-testid="stMarkdownContainer"] h5,
-                     div[data-testid="stMarkdownContainer"] h6,
-                     label[data-testid="stWidgetLabel"] p,
-                     label[data-testid="stWidgetLabel"] span,
-                     div[data-testid="stWidgetLabel"] p,
-                     .stMarkdown,
-                     .stText,
-                     .stCaption {
-                         color: #e6edf3 !important;
-                     }
-
-                     div[role="dialog"] {
-                         background-color: #161b22 !important;
-                         color: #e6edf3 !important;
-                     }
-                     div[role="dialog"] div[data-testid="stMarkdownContainer"] p,
-                     div[role="dialog"] label[data-testid="stWidgetLabel"] p {
-                         color: #e6edf3 !important;
-                     }
-                 }
-
-                 /* -------------------------------------------------------------
                     Global Overrides (Always White Background and Black Text for Inputs)
                     ------------------------------------------------------------- */
                  
@@ -447,16 +410,8 @@ def style_background_dashboard():
         """
            <style>
 
-                /* Light Mode Default background */
                 .stApp {
-                    background: #FEF5E7 !important;
-                }
-
-                /* Dark Mode background */
-                @media (prefers-color-scheme: dark) {
-                    .stApp {
-                        background: #0d1117 !important;
-                    }
+                    background: #FEF5E7 !important
                 }
 
            </style> 
@@ -471,27 +426,14 @@ def style_background_home():
         """
            <style>
 
-                /* Light Mode Default background */
                 .stApp {
-                    background: #FEF5E7 !important;
+                    background: #FEF5E7 !important
                 }
 
-                .stApp div[data-testid="stColumn"] {
+                .stApp div[data-testid="stColumn"]{
                     background-color: #FFF !important;
                     padding: 2.5rem !important;
                     border-radius: 5rem !important;
-                }
-
-                /* Dark Mode background */
-                @media (prefers-color-scheme: dark) {
-                    .stApp {
-                        background: #0d1117 !important;
-                    }
-                    .stApp div[data-testid="stColumn"] {
-                        background-color: #161b22 !important;
-                        padding: 2.5rem !important;
-                        border-radius: 5rem !important;
-                    }
                 }
 
            </style> 
