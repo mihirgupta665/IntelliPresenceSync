@@ -338,6 +338,7 @@ def style_base_layout():
                   div[data-testid="stTextInput"] div[data-baseweb="input"],
                   div[data-testid="stNumberInput"] div[data-baseweb="input"],
                   div[data-testid="stTextArea"] div[data-baseweb="textarea"] {
+                      background: #FFFFFF !important;
                       background-color: #FFFFFF !important;
                       border-color: #E6DCC8 !important;
                   }
@@ -345,7 +346,18 @@ def style_base_layout():
                   /* Force all descendants of the input container to have transparent background (e.g. eye icon wrapper) */
                   div[data-baseweb="input"] *,
                   div[data-baseweb="textarea"] * {
+                      background: transparent !important;
                       background-color: transparent !important;
+                  }
+
+                  /* Force buttons inside the input box to be transparent in all states (hover/active/focus) */
+                  div[data-baseweb="input"] button,
+                  div[data-baseweb="input"] button:hover,
+                  div[data-baseweb="input"] button:active,
+                  div[data-baseweb="input"] button:focus {
+                      background: transparent !important;
+                      background-color: transparent !important;
+                      box-shadow: none !important;
                   }
 
                   /* Ensure the toggle button (eye icon) SVG is dark and visible */
